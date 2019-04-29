@@ -1,5 +1,5 @@
 <?php
-include_once "../config.php";
+include_once "/config.php";
 
 
 
@@ -9,7 +9,7 @@ class livraisonC{
 
 function afficher()
       {
-      	$sql="select * from livraison ";
+      	$sql="select * from livraison where etat='non '";
       	$db=config::getConnexion();
         
         try{
@@ -18,68 +18,18 @@ function afficher()
       	return $liste;
       }catch(Exception $e){
       	die('erreur');
-      }
-	  }
-
-public static function chercherlivraison($id_livraison){
-
-       $sql="SELECT * FROM livraison WHERE id_livraison='".$id_livraison."' ";
-     try{
-
-      	$liste=$db->query($sql);
-      	return $liste;
-      }catch(Exception $e){
-      	die('erreur');
-      }
-	  }
+      }}
 
 
 
-
- function supprimer($id){
-
-  $sql="DELETE FROM livraison WHERE id='".$id."' ";
-  $db= config::getConnexion();
-  $db->query($sql);
-   }
-
-    function modifier_liv($id)
-	{
-		
-  
-			$etat='presque';
-			$sql="UPDATE livraison SET etat='$etat' WHERE id='".$id."' ";
-				
-	$db=config::getConnexion();
-	  $db->query($sql);
-	  
-       
-
-}
-function modifier_liv2($id)
-	{
-		
-  
-			$etat='oui';
-			$sql="UPDATE livraison SET etat='$etat' WHERE id='".$id."' ";
-			
-	$db=config::getConnexion();
-	  $db->query($sql);
-	  
-       
-
-}
-
-
-	function afficher_une_livraison($id)
+function afficher_une_livraison()
 
 {
 	$c = Config::getConnexion();
-	
+	$id=$_POST['id_livraison'];
 
 		try {
-			$li=$c->query("SELECT * FROM livraison WHERE id='".$id."'");
-			
+			$li=$c->query("SELECT * FROM livraison WHERE id=".$id);
 			return $li;
 			
 		} catch (Exception $e) {
@@ -89,11 +39,31 @@ function modifier_liv2($id)
 
 }
 
-	
+ function supprimer($id_livraison){
+
+  $sql="DELETE FROM livraison WHERE id='".$id_livraison."' ";
+  $db= config::getConnexion();
+  $db->query($sql);
+   }
+
+    function modifier_liv()
+	{
+		if(isset($_POST['id_livraison'])){
+  $id_livraison=$_POST['id_livraison'];
+  
+    $etat=$_POST['etat'];
+  $sql="UPDATE livraison SET etat='$etat' WHERE id='$id_livraison'";
+	$db=config::getConnexion();
+	  $db->query($sql);
+	  
+       
+
 }
+	}
+
 
 
 	
 
-
+}
 ?>

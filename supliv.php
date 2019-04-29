@@ -1,9 +1,10 @@
 <?PHP
-include "../core/livraisonC.php";
-include "../entities/livraison.php";
-if(isset($_GET['id']) )
+include "livraisonC.php";
+include "livraison.php";
+
+if(isset($_POST['id']) )
 	{
-	$id=$_GET['id'];
+	$id=$_POST['id'];
 	
 	$livraison= new livraisonC();
 	$livraison->supprimer($id);

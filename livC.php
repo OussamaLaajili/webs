@@ -1,14 +1,14 @@
 <?php
-include_once "../config.php";
+include_once "/config.php";
 
 
 
 class livC{
 
 	
-    function afficher($region)
+    function afficher()
       {
-      	$sql="select * from livruer WHERE region='".$region."' ";
+      	$sql="select * from livruer";
       	$db=config::getConnexion();
         
         try{
@@ -17,21 +17,15 @@ class livC{
       	return $liste;
       }catch(Exception $e){
       	die('erreur');
-      }}
-	  function affecter($id,$cin)
-      {			
-      	
-		
+      }
 
-		$sql="UPDATE livruer SET idliv='".$id."' WHERE cin='".$cin."' ";
-		
-      	$db=config::getConnexion();
-          $db->query($sql);
+
+
 }
 
 	  
 	  function ajoutliv($liv){
-		$req="INSERT INTO livruer(cin,nom,region,dispo) VALUES ('".$liv->get_cin()."','".$liv->get_nom()."','".$liv->get_region()."','".$liv->get_dispo()."')";
+		$req="INSERT INTO livruer(cin,nom,region) VALUES ('".$liv->get_cin()."','".$liv->get_nom()."','".$liv->get_region()."')";
 		
 		$db=config::getConnexion();
 		$db->query($req);
@@ -44,21 +38,6 @@ function supprimer($cin){
   $db= config::getConnexion();
   $db->query($sql);
    }
-function modifier($cin)
-	{
-		
-  
-			$dispo='non';
-			$sql="UPDATE livruer SET dispo='$dispo' WHERE cin='".$cin."' ";
-			echo $sql;
-				
-	$db=config::getConnexion();
-	  $db->query($sql);
-	  
-       
-
-}
-
-
 }
 ?>
+

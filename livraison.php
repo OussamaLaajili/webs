@@ -5,11 +5,10 @@
 	private $username;
 	private $numero;
   private $date;
-  
+  private $adresse;
   private $etat;
   private $region;
-	  private $email;
-
+	
    
       public function __construct()
   {
@@ -58,17 +57,16 @@
   }
 	
 
-  
- 
-  
-public function getemail()
+  public function getadresse()
   {
-    return $this->email;
+    return $this->adresse;
   }
-  public function setuemail($email)
+  public function setadresse($adresse)
   {
-    $this->email=$email;
+    $this->adresse=$adresse;
   }
+  
+
   public function getetat()
   {
     return $this->etat;
